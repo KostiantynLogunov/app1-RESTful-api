@@ -18,7 +18,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return ClientCollection::collection(Client::paginate(5));
+        return ClientCollection::collection(Client::all()->sortByDesc("created_at"));
     }
 
     /**
