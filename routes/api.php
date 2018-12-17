@@ -20,6 +20,6 @@ Route::group(['prefix'=>'auth'], function () {
 Route::group(['middleware'=>'my-jwt'], function (){
     Route::apiResource('clients', 'ClientController');
     Route::apiResource('contacts', 'ContactController');
-    Route::post('file', 'FileController@store');
+    Route::post('file', 'FileController@parseImport');
 });
 

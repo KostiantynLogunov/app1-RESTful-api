@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRegistrationRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -90,61 +91,16 @@ class AuthController extends Controller
         return Auth::Guard('api');
     }
 
-    //=======================    REGISTRATION NEW ACCAUNT FOR NEW USER ======================
-    protected function validator(array $data)
-    {
-        $rules = [
-            'name'      => 'required|min:3|max:29',
-            'email'     => 'required|email|min:6|max:50|unique:users',
-            'password'  => 'min:6|max:30|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation'  => 'required|min:6',
-        ];
-        return Validator::make($data, $rules);
-    }
     /**
-     * Create a new user instance after a valid registration.
+     * Registration New user
      *
-     * @param array $data
-     *
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name'  => $data['name'],
-            'email' => $data['email'],
-            'password'  => bcrypt($data['password']),
-        ]);
-    }
-
-    /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(UserRegistrationRequest $request)
     {
-        $validator = $this->validator($request->all());
+        $token = User::createNewUser($request->all());
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()->toArray()], Response::HTTP_BAD_REQUEST);
-        }
-
-        //Create user record
-        $user = User::create([
-            'name'             => $request->name,
-            'email'             => $request->email,
-            'password'          => bcrypt($request->password),
-        ]);
-
-        if ($user)
-        {
-            $credentials = request(['email', 'password']);
-
-            if (! $token = auth('api')->attempt($credentials)) {
-                return response()->json(['error' => 'Bad registration....'], 401);
-            }
-
-            return $this->respondWithToken($token);
-        }
+        return $this->respondWithToken($token);
     }
 }

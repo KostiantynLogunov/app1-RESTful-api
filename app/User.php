@@ -48,4 +48,25 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public static function createNewUser(array $data)
+    {
+        $user =  self::create([
+            'name'  => $data['name'],
+            'email' => $data['email'],
+            'password'  => bcrypt($data['password']),
+        ]);
+
+        if ($user)
+        {
+            $credentials = request(['email', 'password']);
+
+            if (! $token = auth('api')->attempt($credentials)) {
+                return response()->json(['error' => 'Bad registration....'], 401);
+            }
+
+            return $token;
+        }
+        abort(400);
+    }
 }
