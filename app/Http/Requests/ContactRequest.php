@@ -23,17 +23,10 @@ class ContactRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->method() == "POST")
             return [
                 'client_id' => 'required|integer',
-                'address' => 'required|string',
-                'postcode' => 'required|string',
-            ];
-
-        if ($this->method() == "PUT")
-            return [
-                'address' => 'required|string',
-                'postcode' => 'required|string',
+                'address' => 'required|string|min:4|max:50',
+                'postcode' => 'required|string|min:4|max:50',
             ];
     }
 }

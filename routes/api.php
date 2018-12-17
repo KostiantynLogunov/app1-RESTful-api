@@ -10,6 +10,7 @@ header('Access-Control-Allow-Credentials: true');
 });*/
 
 Route::group(['prefix'=>'auth'], function () {
+   Route::post('register', 'AuthController@register');
    Route::post('login', 'AuthController@login');
    Route::post('logout', 'AuthController@logout');
    Route::post('refresh', 'AuthController@refresh');

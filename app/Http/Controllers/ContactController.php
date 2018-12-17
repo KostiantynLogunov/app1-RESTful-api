@@ -54,7 +54,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Contact $contact)
+    public function update(ContactRequest $request,Contact $contact)
     {
         try {
             $contact->update($request->all());

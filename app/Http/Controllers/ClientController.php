@@ -30,7 +30,7 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $client = Client::create($request->only('first_name', 'email'));
-        return response(['createdUser'=> new ClientResource($client)], Response::HTTP_CREATED);
+        return response(['createdClient'=> new ClientResource($client)], Response::HTTP_CREATED);
     }
 
     /**
@@ -41,7 +41,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return response(['user'=> new ClientResource($client)], Response::HTTP_OK);
+        return response(['client'=> new ClientResource($client)], Response::HTTP_OK);
     }
 
 
@@ -55,7 +55,7 @@ class ClientController extends Controller
     public function update(ClientRequest $request, Client $client)
     {
         $client->update(request()->only('first_name', 'email'));
-        return response(['user'=> new ClientResource($client)], Response::HTTP_CREATED);
+        return response(['client'=> new ClientResource($client)], Response::HTTP_CREATED);
     }
 
     /**
