@@ -58,4 +58,4 @@ go to Client app's repository [Frontend application](https://github.com/Kostiant
 ```
 ## System is ready to work !
 
-For start You must register a new user and than work with client and contacts. You may it in Frontend app client.
+## For start You must register a new user and than work with client and contacts. You may it in Frontend app client.
