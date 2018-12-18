@@ -35,7 +35,7 @@
   
 # For unittest
     phpunit
-        # I made 11 test. All test are successfuly.
+        # I made 11 tests. All tests are successfuly. I run tests in Homestead environment on vagrant.
 ```
 
 # Second step install project Client with VueJS
