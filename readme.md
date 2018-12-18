@@ -32,6 +32,10 @@
         --port=9000 - for set server port
   
   but then dont forget set correct domain in config.js of Frontend app. 
+  
+# For unittest
+    phpunit
+        # I made 11 test. All test are successfuly.
 ```
 
 # Second step install project Client with VueJS
