@@ -9,6 +9,12 @@ use Illuminate\Http\Response;
 
 class FileController extends Controller
 {
+    /**
+     * Parse CVS and store new clients to DB
+     *
+     * @param CsvImportRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
     public function parseImport(CsvImportRequest $request)
     {
         $path = $request->file('file')->getRealPath();

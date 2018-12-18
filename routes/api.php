@@ -1,13 +1,9 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
+/*header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With, X-Socket-Id');
-header('Access-Control-Allow-Credentials: true');
-
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
+header('Access-Control-Allow-Credentials: true');*/
 
 Route::group(['prefix'=>'auth'], function () {
    Route::post('register', 'AuthController@register');
